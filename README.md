@@ -24,13 +24,28 @@ cd subdomain-enumerator`
 
 To run the subdomain enumerator, use the following command:
 
-`go run main.go <target-domain> <path-to-wordlist>` 
+`go run .\main.go <target-domain> <path-to-wordlist> [-c <concurrency-level>] [-f <output-file>]` 
 
 For example:
 
 `go run main.go example.com subdomains.txt` 
 
 The output will display any discovered subdomains that exist.
+
+To run with a concurrency level of 20:
+`go run main.go -c 20 example.com subdomains.txt`
+
+The -c flag specifies the concurrency level, indicating the number of goroutines that can run in parallel. Adjust this value based on your system's capabilities and the network conditions.
+
+To save the output to a file use:
+
+`go run .\main.go -f output.txt example.com subdomains.txt`
+
+To limit the amount of requests per second use:
+
+`go run .\main.go -r 5 example.com subdomains.txt`
+
+This will ensure 5 requests per second.
 
 ## Contributing
 
