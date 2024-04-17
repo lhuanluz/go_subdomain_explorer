@@ -8,6 +8,7 @@ import (
 	"os"
 	"sync"
 	"time"
+	"path/filepath"
 )
 
 func resolveSubdomain(domain, subdomain string, wg *sync.WaitGroup, sem chan struct{}, outputFile *os.File, ticker *time.Ticker) {
@@ -55,7 +56,7 @@ func main() {
 	}
 
 	domain := flag.Args()[0]
-	wordlist := flag.Args()[1]
+	wordlist := filepath.Clean(flag.Args()[1])
 
 	sem := make(chan struct{}, *concurrencyPtr)
 
